@@ -1,0 +1,36 @@
+@startuml modeloDominioCitas
+
+left to right direction
+
+class Paciente
+class Cita
+class Medico
+class Enfermera
+class Directivo
+class Lugar
+class "Historia Clinica" as HistoriaClinica
+class Agenda
+class Especialidad
+class "Tipo de Cita" as TipoCita
+class Procedimiento
+
+Paciente "1" -- "0..*" Cita : Solicita >
+Cita "0..*" -- "1" Medico : Atiende <
+Cita "0..*" -- "0..1" Enfermera : Asiste <
+Cita "0..*" -- "1" Lugar : Se realiza en >
+Enfermera "1" -- "0..*" Lugar : Prepara >
+
+Medico "1" -- "0..*" HistoriaClinica : Genera >
+Directivo "0..*" -- "0..*" HistoriaClinica : Visualizar >
+Paciente "1" -- "0..*" HistoriaClinica : Tiene >
+
+Medico "1" -- "1" Agenda : Tiene >
+Agenda "1" -- "0..*" Cita : Contiene >
+Enfermera "1" -- "1" Agenda : Tiene >
+
+Medico "1" -- "1" Especialidad : Pertenece a >
+Cita "0..*" -- "1" TipoCita : Es de >
+
+Procedimiento "1" -- "0..*" Cita : Incluye >
+
+@enduml

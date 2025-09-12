@@ -1,0 +1,42 @@
+@startuml ERConceptual
+
+left to right direction
+
+' ==== Entidades ====
+entity Paciente
+entity Cita
+entity Medico
+entity Lugar
+
+' ==== Relaciones (simuladas como rombos) ====
+rectangle "Solicita" as Solicita #lightgrey
+rectangle "Atiende" as Atiende #lightgrey
+rectangle "Se Realiza En" as SeRealizaEn #lightgrey
+
+' ==== Atributos ====
+ellipse idPaciente
+ellipse nombrePaciente
+ellipse idCita
+ellipse fecha
+ellipse idMedico
+ellipse nombreMedico
+
+' ==== Conexiones entidad-atributo ====
+Paciente -- idPaciente
+Paciente -- nombrePaciente
+Cita -- idCita
+Cita -- fecha
+Medico -- idMedico
+Medico -- nombreMedico
+
+' ==== Conexiones entidad-relacion ====
+Paciente -- Solicita
+Solicita -- Cita
+
+Cita -- Atiende
+Atiende -- Medico
+
+Cita -- SeRealizaEn
+SeRealizaEn -- Lugar
+
+@enduml

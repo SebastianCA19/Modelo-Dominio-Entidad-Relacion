@@ -4,7 +4,7 @@ top to bottom direction
 
 class Usuario
 class Medico
-class Directivo
+class Administrador
 class Enfermera
 class Paciente
 class Agenda
@@ -18,7 +18,7 @@ class Procedimiento
 'Relaciones de herencia
 
 Usuario <|-down- Medico
-Usuario <|-down- Directivo
+Usuario <|-down- Administrador
 Usuario <|-down- Enfermera
 Usuario <|-down- Paciente
 
@@ -40,5 +40,6 @@ Agenda "1" o-- "*" Cita : Contiene
 
 'Especialidad seria un atributo del medico
 'Tipo de cita seria un atributo de la cita
+
 
 @enduml

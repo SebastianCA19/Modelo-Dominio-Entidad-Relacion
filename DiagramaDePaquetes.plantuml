@@ -1,0 +1,101 @@
+@startuml cock
+top to bottom direction
+
+package "Presentacion" {
+    class UsuarioControlador
+    class MedicoControlador
+    class AdministradorControlador
+    class EnfermeraControlador
+    class PacienteControlador
+    class AgendaControlador
+    class AgendaMedicoControlador
+    class AgendaEnfermeraControlador
+    class LugarControlador
+    class CitaControlador
+    class HistoriaClinicaControlador
+    class ProcedimientoControlador
+}
+
+package "Servicio"{
+    class UsuarioServicio
+    class MedicoServicio
+    class AdministradorServicio
+    class EnfermeraServicio
+    class PacienteServicio
+    class AgendaServicio
+    class AgendaMedicoServicio
+    class AgendaEnfermeraServicio
+    class LugarServicio
+    class CitaServicio
+    class HistoriaClinicaServicio
+    class ProcedimientoServicio
+}
+
+package "Persistencia"{
+    class UsuarioRepositorio
+    class MedicoRepositorio
+    class AdministradorRepositorio
+    class EnfermeraRepositorio
+    class PacienteRepositorio
+    class AgendaRepositorio
+    class AgendaMedicoRepositorio
+    class AgendaEnfermeraRepositorio
+    class LugarRepositorio
+    class CitaRepositorio
+    class HistoriaClinicaRepositorio
+    class ProcedimientoRepositorio
+}
+
+package "Modelo"{
+    class Usuario
+    class Medico
+    class Administrador
+    class Enfermera
+    class Paciente
+    class Agenda
+    class AgendaMedico
+    class AgendaEnfermera
+    class Lugar
+    class Cita
+    class HistoriaClinica
+    class Procedimiento
+}
+
+package EstructuraDatos{
+    interface ILista
+    class ListaEspañol
+}
+
+Presentacion ....> Servicio : "Delega a"
+Presentacion ....> EstructuraDatos : "usa"
+
+Servicio ....> Persistencia : "usa"
+Servicio ....> EstructuraDatos : "usa"
+
+Persistencia ....> Modelo : "mapea a"
+Persistencia ....> EstructuraDatos : "usa"
+
+'Relaciones de herencia'
+
+Usuario <|-down- Medico
+Usuario <|-down- Administrador
+Usuario <|-down- Enfermera
+Usuario <|-down- Paciente
+
+Agenda <|-down- AgendaMedico
+Agenda <|-down- AgendaEnfermera
+
+'Relaciones de cardinalidad
+
+Paciente *-- HistoriaClinica
+Paciente *-- Cita
+Medico *--- AgendaMedico
+Enfermera *-- AgendaEnfermera
+Cita o-- Lugar
+Procedimiento -up-o Cita
+Agenda o-- Cita
+
+ListaEspañol --> ILista: Implementa
+
+
+@enduml
